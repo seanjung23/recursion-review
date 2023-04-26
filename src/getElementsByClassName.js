@@ -4,8 +4,7 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className, accumulator
-) {
+var getElementsByClassName = function(className, element) {
   // your code here
 
   // I - class name, elements of the HTML body
@@ -21,28 +20,18 @@ var getElementsByClassName = function(className, accumulator
   //   Concat any html elements that have the classname to the result variable
   // Return flattened array
 
-  var htmlElements = accumulator === undefined ? document.body : accumulator;
+  var element = element === undefined ? document.body : element;
+  var children = element.childNodes;
   var result = [];
 
-  if (htmlElements.classList && htmlElements.classList.contains(className)) {
-    result.push(htmlElements);
+  if (element.classList && element.classList.contains(className)) {
+    result.push(element);
   }
-
-  if (!htmlElements.childNodes) {
-    if (htmlElements.classList.contains(className)) {
-      result.push(htmlElements);
-      return result;
-    } else {
-      return result;
-    }
-  }
-
-  if (htmlElements.childNodes) {
-    htmlElements.childNodes.forEach(function (node) {
-      result = result.concat(getElementsByClassName(className, node));
+  if (children) {
+    children.forEach(function(item) {
+      result = result.concat(getElementsByClassName(className, item));
     });
   }
 
   return result;
-
 };
