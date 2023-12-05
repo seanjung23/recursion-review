@@ -5,14 +5,13 @@ var htmlStrings = [
   '<div><div class="targetClassName"><div class="targetClassName"></div></div></div>',
   '<div><div></div><div><div class="targetClassName"></div></div></div>',
   '<div><div class="targetClassName"></div><div class="targetClassName"></div></div>',
-  '<div><div class="somediv"><div class="innerdiv"><span class="targetClassName">yay</span></div></div></div>'
+  '<div><div class="somediv"><div class="innerdiv"><span class="targetClassName">yay</span></div></div></div>',
 ];
 
-describe('getElementsByClassName', function() {
-
-  it('should match the results of calling the built-in function', function() {
+describe('getElementsByClassName', function () {
+  it('should match the results of calling the built-in function', function () {
     $('body').addClass('targetClassName');
-    htmlStrings.forEach(function(htmlString) {
+    htmlStrings.forEach(function (htmlString) {
       var $rootElement = $(htmlString);
       $('body').append($rootElement);
 
@@ -26,5 +25,4 @@ describe('getElementsByClassName', function() {
     });
     $('body').removeClass('targetClassName');
   });
-
 });
